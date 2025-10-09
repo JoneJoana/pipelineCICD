@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Manage NPM Dependencies
         uses: ./.github/actions/cache-node-dependencies
@@ -25,3 +27,16 @@ jobs:
 
       - name: Build
         run: npm run build
+      
+      - name: Lint
+        run: npm run lint 
+      - name: Test
+        run: npm run test
+
+      - name: SonarCloud
+        uses: SonarSource/sonarqube-scan-action@v6
+        with: # Muy importante esta parte, ya que le dice a SonarCloud que sólo analice el proyecto de back
+          projectBaseDir: back-end-app
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_BACK }}
