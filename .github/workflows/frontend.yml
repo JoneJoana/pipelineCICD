@@ -63,6 +63,5 @@ jobs:
         with:
           context: ./front-end-app # El working directory
           push: true
-          # tags: ${{ steps.docker-metadata.outputs.labels }}/pipelinecicd_front # Añadimos el tag de la imagen apuntando al registry de Github
           tags: ${{ steps.docker-metadata.outputs.tags }}
           labels: ${{ steps.docker-metadata.outputs.labels }}
