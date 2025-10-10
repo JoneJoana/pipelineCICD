@@ -56,7 +56,7 @@ jobs:
         id: docker-metadata
         uses: docker/metadata-action@v4
         with:
-          images: ghcr.io/${{ github.actor }}
+          images: ghcr.io/${{ github.actor }}/pipelinecicd_front
 
       - name: Build Docker Image
         uses: docker/build-push-action@v5 # Utilizamos la acción de build y push de docker del marketplace. Esto hace el docker build y el docker push por debajo
